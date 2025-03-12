@@ -45,7 +45,10 @@
     <div class="wrapper">
 
     @include('backend._partials.sidebar')
+  
     @include('backend._partials.header')
+
+    @yield('footer')
     
     @yield('content')
 
