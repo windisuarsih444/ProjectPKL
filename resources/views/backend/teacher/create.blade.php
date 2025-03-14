@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container p-4">
-    <h3 class="fw-bold text-center bg-primary text-white mb-4">Add Teacher</h3>
+    <h3 class="fw-bold text-center bg-black text-white mb-4">Add Teacher</h3>
     <div class="card shadow rounded border-0">
         <div class="card-body p-4">
             <form action="{{ route('teacher.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>

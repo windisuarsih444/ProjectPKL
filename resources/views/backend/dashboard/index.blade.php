@@ -5,7 +5,7 @@
 
     <!-- Welcome Section -->
     <div class="text-center my-4 p-4 rounded shadow-sm bg-black text-white animate__animated animate__bounceIn floating" id="welcome">
-        <h2 class="fw-bold">Selamat Datang di Aplikasi Windi!</h2>
+        <h2 class="fw-bold">Selamat Datang di Windi Pages!</h2>
         <p class="mt-2">Aplikasi ini dirancang untuk mempermudah pembelajaran guna memenuhi standar Program PKL Politeknik Negeri Lampung 2025. Pantau statistik, kelola pengguna, dan tingkatkan efisiensi dengan fitur-fitur yang telah kami sediakan.</p>
     </div>
 

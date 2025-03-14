@@ -5,8 +5,7 @@
 <div class="container mb-5"> <!-- Tambahkan margin bawah agar tidak tertutup footer -->
     <h3 class="fw-bold mb-3">Data Siswa</h3>
     <a href="{{ route('students.create') }}" class="btn btn-success btn-sm mb-3">
-        <i class="fas fa-plus"></i> Tambah Siswa
-    </a>
+        <i class="fas fa-plus"></i> Tambah Siswa</a>
 
     <!-- Form Pencarian -->
     <form action="{{ route('students') }}" method="GET" class="mb-3">
@@ -14,9 +13,8 @@
             <input type="text" name="search" class="form-control" placeholder="Cari siswa..." value="{{ request('search') }}">
             <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Cari</button>
             @if(request('search'))
-                <a href="{{ route('user') }}" class="btn btn-secondary">
-                    <i class="fas fa-times"></i> Reset
-                </a>
+                <a href="{{ route('students') }}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Reset</a>
             @endif
         </div>
     </form>
@@ -97,41 +95,41 @@
 
                 <!-- Paginasi -->
                 <div class="d-flex justify-content-center flex-wrap w-100 mt-3">
-    <nav>
-        <ul class="pagination">
-            <!-- Tombol Previous -->
-            @if ($students->onFirstPage())
-                <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                </li>
-            @else
-                <li class="page-item">
-                    <a class="page-link" href="{{ $students->previousPageUrl() }}">Previous</a>
-                </li>
-            @endif
+                <nav>
+                <ul class="pagination">
+                <!-- Tombol Previous -->
+                    @if ($students->onFirstPage())
+                        <li class="page-item disabled">
+                            <span class="page-link">Previous</span>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $students->previousPageUrl() }}">Previous</a>
+                        </li>
+                    @endif
 
-            <!-- Info Halaman -->
-            <li class="page-item disabled">
-                <span class="page-link text-muted">Page {{ $students->currentPage() }} dari {{ $students->lastPage() }}</span>
-            </li>
+                <!-- Info Halaman -->
+                    <li class="page-item disabled">
+                        <span class="page-link text-muted">Page {{ $students->currentPage() }} dari {{ $students->lastPage() }}</span>
+                    </li>
 
-            <!-- Tombol Next -->
-            @if ($students->hasMorePages())
-                <li class="page-item">
-                    <a class="page-link" href="{{ $students->nextPageUrl() }}">Next</a>
-                </li>
-            @else
-                <li class="page-item disabled">
-                    <span class="page-link">Next</span>
-                </li>
-            @endif
-        </ul>
-    </nav>
-</div>
-</div>
-</div>
-</div>
-</div>
+                <!-- Tombol Next -->
+                    @if ($students->hasMorePages())
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $students->nextPageUrl() }}">Next</a>
+                        </li>
+                    @else
+                        <li class="page-item disabled">
+                            <span class="page-link">Next</span>
+                        </li>
+                    @endif
+                </ul>
+            </nav>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
             </div>
         </div>
     </div>

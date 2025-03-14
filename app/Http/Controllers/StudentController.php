@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreStudentRequest;
 
 class StudentController extends Controller
 {
@@ -20,8 +21,8 @@ class StudentController extends Controller
                   ->orWhere('address', 'LIKE', "%$search%");
         }
 
-        // Perbaikan paginasi dengan menambahkan appends()
-        $students = $query->paginate(5)->appends(request()->query());
+        // paginasi dengan menambahkan appends()
+        $students = $query->paginate(3)->appends(request()->query());
 
         return view('backend.student.index', compact('students'));
     }
@@ -31,19 +32,8 @@ class StudentController extends Controller
         return view('backend.student.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:students,email',
-            'phone' => 'required',
-            'class' => 'required',
-            'address' => 'required',
-            'gender' => 'required|in:L,P',
-            'status' => 'required|in:Aktif,Tidak Aktif',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
         try {
             $data = $request->all();
 

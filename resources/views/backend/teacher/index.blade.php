@@ -15,7 +15,7 @@
                     <input type="text" name="search" class="form-control" placeholder="Cari guru..." value="{{ request('search') }}">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Cari</button>
                     @if(request('search'))
-                <a href="{{ route('user') }}" class="btn btn-secondary">
+                <a href="{{ route('teacher') }}" class="btn btn-secondary">
                     <i class="fas fa-times"></i> Reset
                 </a>
             @endif
@@ -86,17 +86,15 @@
                         @empty
                         <tr>
                             <td colspan="9" class="text-center">
-                                <div class="alert alert-warning mt-3">
-                                    Tidak ada data guru yang tersedia.
-                                </div>
+                                <div class="alert alert-warning mt-3"> Tidak ada data guru yang tersedia.</div>
                             </td>
                         </tr>
                         @endforelse
                     </tbody>
                 </table>
+
                  <!-- Paginasi -->
-                 <div class="d-flex justify-content-center flex-wrap w-100 mt-3">
-    <nav>
+                 <div class="d-flex justify-content-center flex-wrap w-100 mt-3"> <nav>
         <ul class="pagination">
             <!-- Tombol Previous -->
             @if ($teachers->onFirstPage())
@@ -127,8 +125,6 @@
         </ul>
     </nav>
 </div>
-
-        
             </div>
         </div>
     </div>

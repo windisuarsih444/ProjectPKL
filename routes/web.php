@@ -7,13 +7,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\PaginationController;
+use App\Http\Controllers\MapelController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::middleware('auth', 'verified')->group(function() {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // student
     Route::prefix('students')->group(function () {
@@ -34,7 +35,17 @@ Route::middleware('auth', 'verified')->group(function() {
         Route::put('/{id}', [UserController::class, 'update'])->name('user.update');
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
     });
-    
+
+    // mapel
+    Route::prefix('backend/mapel')->group(function () {
+        Route::get('/', [MapelController::class, 'index'])->name('mapel');
+        Route::get('/backend/mapel/create', [MapelController::class, 'create'])->name('mapel.create');
+        Route::post('/backend/mapel/store', [MapelController::class, 'store'])->name('mapel.store');
+        Route::get('/{id}/edit', [MapelController::class, 'edit'])->name('mapel.edit');
+        Route::put('/{id}', [MapelController::class, 'update'])->name('mapel.update');
+        Route::delete('/destroy/{id}', [MapelController::class, 'destroy'])->name('mapel.destroy');
+    });
+
 
     // teacher (sudah diperbaiki, sesuai dengan database yang menggunakan "teacher" bukan "teachers")
     Route::prefix('teacher')->group(function () {
@@ -51,7 +62,7 @@ Route::middleware('auth', 'verified')->group(function() {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-});
+    });
 
 
 require __DIR__.'/auth.php';

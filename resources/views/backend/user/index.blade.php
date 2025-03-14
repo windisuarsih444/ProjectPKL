@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h3 class="fw-bold mb-3">Tabel User</h3>
+    <h3 class="fw-bold mb-3"><b>Data Users</b></h3>
     <a href="{{ route('user.create') }}" class="btn btn-success mb-3">
         <i class="fas fa-plus"></i> Add User
     </a>

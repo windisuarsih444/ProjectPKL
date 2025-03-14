@@ -34,32 +34,37 @@
         <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">
           <a href="{{ route('user') }}">
             <i class="fas fa-users"></i>
-            <p>Data User</p>
+            <p>Data Users</p>
           </a>
         </li>
         
-        <li class="nav-item {{ Request::is('students*') ? 'active' : '' }}">
-    <a href="{{ route('students') }}">
-        <i class="fas fa-user-graduate"></i>
-        <p>Data Students</p>
-    </a>
-</li>
+          <li class="nav-item {{ Request::is('students*') ? 'active' : '' }}">
+          <a href="{{ route('students') }}">
+              <i class="fas fa-user-graduate"></i>
+              <p>Data Students</p>
+          </a>
+        </li>
 
-<li class="nav-item {{ Request::is('teacher*') ? 'active' : '' }}">
-    <a href="{{ route('teacher') }}">
-        <i class="fas fa-chalkboard-teacher"></i>
-        <p>Data Teachers</p>
-    </a>
-</li>
+        <li class="nav-item {{ Request::is('teacher*') ? 'active' : '' }}">
+            <a href="{{ route('teacher') }}">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <p>Data Teachers</p>
+            </a>
+        </li>
 
-
+        <li class="nav-item {{ Request::is('mapel*') ? 'active' : '' }}">
+            <a href="{{ route('mapel') }}">
+                <i class="fas fa-book"></i> 
+                <p>Mata Pelajaran</p>
+            </a>
+        </li>
+        
         <li class="nav-item">
           <!-- Authentication -->
           <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fas fa-sign-out-alt"></i>
             <p>Logout</p>
           </a>
-
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
           </form>
@@ -68,3 +73,4 @@
     </div>
   </div>
 </div>
+

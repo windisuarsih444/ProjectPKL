@@ -12,12 +12,15 @@ class TeacherController extends Controller
     {
         $search = $request->input('search');
 
-        // Query untuk mengambil data teacher dengan pencarian
+        // query untuk mengambil data teacher dengan pencarian
         $teachers = Teacher::when($search, function ($query) use ($search) {
             return $query->where('name', 'like', "%{$search}%")
                          ->orWhere('email', 'like', "%{$search}%")
-                         ->orWhere('phone', 'like', "%{$search}%");
-        })->paginate(3)->appends(request()->query()); // Pagination dengan mempertahankan query pencarian
+                         ->orWhere('phone', 'like', "%{$search}%")
+                         ->orWhere('address', 'LIKE', "%$search%");
+
+        // pagination
+        })->paginate(3)->appends(request()->query());
 
         return view('backend.teacher.index', compact('teachers', 'search'));
     }
@@ -31,7 +34,7 @@ class TeacherController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:teachers,email', 
+            'email' => 'required|email|unique:teacher,email', 
             'phone' => 'required',
             'address' => 'required',
             'gender' => 'required',
@@ -64,7 +67,7 @@ class TeacherController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:teachers,email,' . $id,
+            'email' => 'required|email|unique:teacher,email,' . $id,
             'phone' => 'required',
             'address' => 'required',
             'gender' => 'required',

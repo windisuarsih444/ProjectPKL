@@ -4,7 +4,7 @@
               <ul class="nav">
                 <li class="nav-item">
                   <a class="nav-link" href="http://www.themekita.com">
-                    ThemeKita
+                    Windi
                   </a>
                 </li>
                 <li class="nav-item">
@@ -17,11 +17,11 @@
             </nav>
             <div class="copyright">
               2024, made with <i class="fa fa-heart heart text-danger"></i> by
-              <a href="http://www.themekita.com">ThemeKita</a>
+              <a href="http://www.themekita.com">Windi</a>
             </div>
             <div>
               Distributed by
-              <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+              <a target="_blank" href="https://themewagon.com/">Windi</a>.
             </div>
           </div>
         </footer>
