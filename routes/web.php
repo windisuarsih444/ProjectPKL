@@ -8,6 +8,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\MapelController;
+use App\Http\Controllers\NilaiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,6 +57,17 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
         Route::put('/{id}', [TeacherController::class, 'update'])->name('teacher.update');
         Route::delete('/{id}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
     });
+
+    // nilai
+    Route::prefix('backend/nilai')->group(function () {
+        Route::get('/', [NilaiController::class, 'index'])->name('nilai');
+        Route::get('/create', [NilaiController::class, 'create'])->name('nilai.create');
+        Route::post('/', [NilaiController::class, 'store'])->name('nilai.store');
+        Route::get('/{id}/edit', [NilaiController::class, 'edit'])->name('nilai.edit');
+        Route::put('/{id}', [NilaiController::class, 'update'])->name('nilai.update');
+        Route::delete('/{id}', [NilaiController::class, 'destroy'])->name('nilai.destroy');
+    });
+    
 
     // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

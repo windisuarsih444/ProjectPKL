@@ -6,8 +6,7 @@
     <div class="card shadow-lg border-0">
         <div class="card-body p-4">
             <a href="{{ route('teacher.create') }}" class="btn btn-success mb-3">
-                <i class="fas fa-plus"></i> Add Teacher
-            </a>
+                <i class="fas fa-plus"></i> Add Teacher </a>
 
             <!-- Form Pencarian -->
             <form action="{{ route('teacher') }}" method="GET" class="mb-3">
@@ -16,8 +15,7 @@
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Cari</button>
                     @if(request('search'))
                 <a href="{{ route('teacher') }}" class="btn btn-secondary">
-                    <i class="fas fa-times"></i> Reset
-                </a>
+                    <i class="fas fa-times"></i> Reset</a>
             @endif
                 </div>
             </form>
@@ -125,8 +123,8 @@
         </ul>
     </nav>
 </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
 </div>
 @endsection

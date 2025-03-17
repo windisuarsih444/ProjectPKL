@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+
     use HasFactory;
 
     protected $fillable = [
@@ -19,4 +20,10 @@ class Student extends Model
         'status',
         'photo'
     ];
+
+    public function student()
+        {
+            return $this->hasMany(Nilai::class);
+        }
+        
 }
