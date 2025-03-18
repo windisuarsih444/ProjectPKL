@@ -3,7 +3,7 @@
 @section('content')
 <div class="container p-4">
     <div class="card shadow-lg border-0 rounded-4">
-        <div class="card-header bg-primary text-white text-center rounded-top-4">
+        <div class="card-header bg-black text-white text-center rounded-top-4">
             <h3 class="fw-bold mb-0">Edit Mata Pelajaran</h3>
         </div>
         <div class="card-body bg-light p-4">

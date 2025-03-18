@@ -8,15 +8,26 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Mapel;
 use Yajra\DataTables\Facades\DataTables;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class NilaiController extends Controller
 {
+
+    public function exportPdf()
+    {
+        $nilai = Nilai::with(['student', 'teacher', 'mapel'])->get();
+        $pdf = Pdf::loadView('backend.nilai.pdf', compact('nilai'))->setPaper('a4', 'landscape');
+    
+        return $pdf->download('daftar_nilai.pdf');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax()) {
             $data = Nilai::with(['student', 'teacher', 'mapel'])->select('nilai.*');
 
-            return DataTables::of($data)
+            return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('student.name', function ($row) {
                     return $row->student->name ?? '-';

@@ -20,7 +20,7 @@
                             </div>
                     
                             <div class="d-flex justify-content-end gap-2">
-                                <button type="submit" class="btn btn-warning">SAVE</button>
+                                <button type="submit" class="btn btn-primary">SAVE</button>
                                 <a href="{{ route('mapel') }}" class="btn btn-danger">CLOSE</a>
                             </div>
                         </form>

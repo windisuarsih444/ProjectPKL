@@ -45,6 +45,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
         Route::get('/{id}/edit', [MapelController::class, 'edit'])->name('mapel.edit');
         Route::put('/{id}', [MapelController::class, 'update'])->name('mapel.update');
         Route::delete('/destroy/{id}', [MapelController::class, 'destroy'])->name('mapel.destroy');
+        Route::get('/mapel/search', [MapelController::class, 'search'])->name('mapel.search');
+
     });
 
 
@@ -66,6 +68,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
         Route::get('/{id}/edit', [NilaiController::class, 'edit'])->name('nilai.edit');
         Route::put('/{id}', [NilaiController::class, 'update'])->name('nilai.update');
         Route::delete('/{id}', [NilaiController::class, 'destroy'])->name('nilai.destroy');
+        Route::get('/students/search', [NilaiController::class, 'searchStudents'])->name('students.search');
+        Route::get('/nilai/export/pdf', [NilaiController::class, 'exportPdf'])->name('nilai.export.pdf');
     });
     
 

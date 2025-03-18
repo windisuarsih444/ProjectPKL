@@ -5,9 +5,12 @@
     <div class="card shadow-sm border-0">
         <div class="card-header bg-light d-flex justify-content-between align-items-center">
             <h4 class="mb-0"><b>Daftar Nilai</b></h4>
-            <a href="{{ route('nilai.create') }}" class="btn btn-success">
-                <i class="fas fa-plus"></i> Tambah Nilai
-            </a>
+            <div>
+                <a href="{{ route('nilai.create') }}" class="btn btn-success me-2">
+                    <i class="fas fa-plus"></i> Tambah Nilai</a>
+                <a href="{{ route('nilai.export.pdf') }}" class="btn btn-danger">
+                 <i class="fas fa-file-pdf"></i> Export PDF</a>
+            </div>
         </div>
 
         <div class="card-body">
@@ -19,10 +22,6 @@
             @endif
 
             <!-- Input Search -->
-            <!-- <div class="mb-3">
-                <input type="text" id="searchBox" class="form-control" placeholder="Cari data...">
-            </div> -->
-
             <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
                 <table class="table table-striped table-hover align-middle" id="nilai">
                     <thead class="table-dark">
@@ -69,14 +68,14 @@
                     searchable: false, 
                     className: 'text-center',
                     render: function(data, type, row) {
-                        return `
-                            <a href="/backend/nilai/${data}/edit" class="btn btn-warning btn-sm me-1">
-                                <i class="fas fa-edit"></i> Edit
-                            </a>
-                            <button type="button" class="btn btn-danger btn-sm delete-button" data-id="${data}">
-                                <i class="fas fa-trash"></i> Hapus
-                            </button>
-                        `;
+                        console.log(data);
+                
+                        return `<a href="/backend/nilai/${row.id}/edit" class="btn btn-warning btn-sm me-1">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <button type="button" class="btn btn-danger btn-sm delete-button" data-id="${row.id}">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>`;
                     }
                 }
             ],
