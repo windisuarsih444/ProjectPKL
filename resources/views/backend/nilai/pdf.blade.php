@@ -46,7 +46,7 @@
 </head>
 <body>
     <div class="kop-surat">
-        <img src="logo_sekolah.png" alt="Logo Sekolah">
+        <img src="logo_sekolah.png" alt="">
         <h1>PKL PT.MICRODATA INDONESIA 2025</h1>
         <h2>Kementerian Pendidikan dan Kebudayaan</h2>
         <p>Jl. Pendidikan No. 123, Bandar Lampung, Lampung, Kode Pos : 31122</p>

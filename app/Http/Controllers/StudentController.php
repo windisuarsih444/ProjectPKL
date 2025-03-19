@@ -22,7 +22,7 @@ class StudentController extends Controller
         }
 
         // paginasi dengan menambahkan appends()
-        $students = $query->paginate(3)->appends(request()->query());
+        $students = $query->paginate(5)->appends(request()->query());
 
         return view('backend.student.index', compact('students'));
     }

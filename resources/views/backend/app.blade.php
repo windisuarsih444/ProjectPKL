@@ -47,11 +47,8 @@
     @include('backend._partials.sidebar')
   
     @include('backend._partials.header')
-
-    @yield('footer')
     
     @yield('content')
-
     @include('backend._partials.footer')
 
     </div>

@@ -6,7 +6,8 @@
     <div class="card shadow-lg border-0">
         <div class="card-body p-4">
             <a href="{{ route('teacher.create') }}" class="btn btn-success mb-3">
-                <i class="fas fa-plus"></i> Add Teacher </a>
+                <i class="fas fa-plus"></i> Add Teacher 
+            </a>
 
             <!-- Form Pencarian -->
             <form action="{{ route('teacher') }}" method="GET" class="mb-3">
@@ -14,9 +15,10 @@
                     <input type="text" name="search" class="form-control" placeholder="Cari guru..." value="{{ request('search') }}">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Cari</button>
                     @if(request('search'))
-                <a href="{{ route('teacher') }}" class="btn btn-secondary">
-                    <i class="fas fa-times"></i> Reset</a>
-            @endif
+                        <a href="{{ route('teacher') }}" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Reset
+                        </a>
+                    @endif
                 </div>
             </form>
 
@@ -24,7 +26,7 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
-            <div class="table-responsive">
+            <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
                 <table class="table table-hover table-bordered text-center">
                     <thead class="table-dark">
                         <tr>
@@ -90,41 +92,43 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
 
-                 <!-- Paginasi -->
-                 <div class="d-flex justify-content-center flex-wrap w-100 mt-3"> <nav>
-        <ul class="pagination">
-            <!-- Tombol Previous -->
-            @if ($teachers->onFirstPage())
-                <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                </li>
-            @else
-                <li class="page-item">
-                    <a class="page-link" href="{{ $teachers->previousPageUrl() }}">Previous</a>
-                </li>
-            @endif
+            <!-- Paginasi -->
+            <div class="d-flex justify-content-center flex-wrap w-100 mt-3">
+                <nav>
+                    <ul class="pagination">
+                        <!-- Tombol Previous -->
+                        @if ($teachers->onFirstPage())
+                            <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $teachers->previousPageUrl() }}">Previous</a>
+                            </li>
+                        @endif
 
-            <!-- Info Halaman -->
-            <li class="page-item disabled">
-                <span class="page-link text-muted">Page {{ $teachers->currentPage() }} dari {{ $teachers->lastPage() }}</span>
-            </li>
+                        <!-- Info Halaman -->
+                        <li class="page-item disabled">
+                            <span class="page-link text-muted">Page {{ $teachers->currentPage() }} dari {{ $teachers->lastPage() }}</span>
+                        </li>
 
-            <!-- Tombol Next -->
-            @if ($teachers->hasMorePages())
-                <li class="page-item">
-                    <a class="page-link" href="{{ $teachers->nextPageUrl() }}">Next</a>
-                </li>
-            @else
-                <li class="page-item disabled">
-                    <span class="page-link">Next</span>
-                </li>
-            @endif
-        </ul>
-    </nav>
-</div>
-</div>
-</div>
+                        <!-- Tombol Next -->
+                        @if ($teachers->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $teachers->nextPageUrl() }}">Next</a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <span class="page-link">Next</span>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 @endsection
