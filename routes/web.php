@@ -6,16 +6,20 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\PaginationController;
+// use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\PendaftaranController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth', 'verified')->group(function() {
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/pendaftaran/create', [PendaftaranController::class, 'create'])->name('pendaftaran.create'); // Form Pendaftaran
+Route::post('/pendaftaran/store', [PendaftaranController::class, 'store'])->name('pendaftaran.store'); // Simpan Pendaftaran
+
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // student
     Route::prefix('students')->group(function () {
@@ -46,9 +50,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
         Route::put('/{id}', [MapelController::class, 'update'])->name('mapel.update');
         Route::delete('/destroy/{id}', [MapelController::class, 'destroy'])->name('mapel.destroy');
         Route::get('/mapel/search', [MapelController::class, 'search'])->name('mapel.search');
-
     });
-
 
     // teacher (sudah diperbaiki, sesuai dengan database yang menggunakan "teacher" bukan "teachers")
     Route::prefix('teacher')->group(function () {
@@ -71,14 +73,22 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
         Route::get('/students/search', [NilaiController::class, 'searchStudents'])->name('students.search');
         Route::get('/nilai/export/pdf', [NilaiController::class, 'exportPdf'])->name('nilai.export.pdf');
     });
-    
+
+    // Pendaftaran (Admin)
+        Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran'); // Hanya Admin
+        Route::get('/pendaftaran/{id}/edit', [PendaftaranController::class, 'edit'])->name('pendaftaran.edit');
+        Route::put('/pendaftaran/{id}', [PendaftaranController::class, 'update'])->name('pendaftaran.update'); // Hapus duplikasi
+        Route::delete('/pendaftaran/{id}', [PendaftaranController::class, 'destroy'])->name('pendaftaran.destroy');
+        Route::get('/pendaftaran/export/pdf', [PendaftaranController::class, 'exportPDF'])->name('pendaftaran.export.pdf');
+        Route::get('/pendaftaran/{id}', [PendaftaranController::class, 'show']);
+        Route::post('/pendaftaran/{id}/update-status', [PendaftaranController::class, 'updateStatus'])->name('pendaftaran.updateStatus');
+
 
     // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    });
+});
 
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

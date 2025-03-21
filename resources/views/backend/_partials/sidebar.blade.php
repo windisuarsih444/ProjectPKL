@@ -64,6 +64,13 @@
             </a>
         </li>
 
+        <li class="nav-item {{ request()->is('pendaftaran*') ? 'active' : '' }}">
+            <a href="{{ route('pendaftaran') }}" class="{{ request()->is('pendaftaran*') ? 'active-link' : '' }}">
+                <i class="fas fa-edit"></i>
+                <p>Pendaftaran</p>
+            </a>
+        </li> 
+
         <li class="nav-item">
           <!-- Authentication -->
           <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
