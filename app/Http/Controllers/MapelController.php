@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mapel;
 use DataTables;
-use DB;
+// use DB;
 
 class MapelController extends Controller
 {

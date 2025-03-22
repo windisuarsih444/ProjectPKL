@@ -74,7 +74,7 @@ Route::middleware('auth', 'verified')->group(function () {
         Route::get('/nilai/export/pdf', [NilaiController::class, 'exportPdf'])->name('nilai.export.pdf');
     });
 
-    // Pendaftaran (Admin)
+    // Pendaftaran
         Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran'); // Hanya Admin
         Route::get('/pendaftaran/{id}/edit', [PendaftaranController::class, 'edit'])->name('pendaftaran.edit');
         Route::put('/pendaftaran/{id}', [PendaftaranController::class, 'update'])->name('pendaftaran.update'); // Hapus duplikasi
