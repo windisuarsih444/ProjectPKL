@@ -7,14 +7,13 @@
         padding-right: 10px;
     }
 
-    /* Animasi Loading */
     .loading-screen {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: #f8f9fa; /* Warna latar belakang loading screen */
+        background: #f8f9fa; 
         display: flex;
         justify-content: center;
         align-items: center;
@@ -32,100 +31,95 @@
         }
     }
 
-    /* Welcome Section */
     .welcome-section {
         text-align: center;
         padding: 40px 20px;
-        background: linear-gradient(135deg, #2c3e50, #34495e); /* Warna gelap elegan */
-        color: white; /* Teks putih */
+        background: linear-gradient(135deg, #2c3e50, #34495e); 
+        color: white;
         border-radius: 10px;
         margin-bottom: 30px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Bayangan lebih halus */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
 
     .welcome-section h1 {
         font-size: 2.5rem;
         font-weight: bold;
         margin-bottom: 10px;
-        animation: floatUpAndDown 3s ease-in-out infinite; /* Animasi teks */
+        animation: floatUpAndDown 3s ease-in-out infinite; 
     }
 
     .welcome-section p {
         font-size: 1.2rem;
         margin-bottom: 20px;
-        animation: fadeInScale 2s ease-in-out infinite; /* Animasi deskripsi */
+        animation: fadeInScale 2s ease-in-out infinite; 
     }
 
     .welcome-section .btn-explore {
         padding: 10px 20px;
         font-size: 1rem;
-        color: white; /* Teks tombol putih */
-        background: #1abc9c; /* Warna tombol hijau tosca */
+        color: white; 
+        background: #1abc9c; 
         border: none;
         border-radius: 5px;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
-        animation: pulseButton 1.5s ease-in-out infinite; /* Animasi tombol */
+        animation: pulseButton 1.5s ease-in-out infinite; 
     }
 
     .welcome-section .btn-explore:hover {
-        background: #16a085; /* Efek hover tombol */
+        background: #16a085; 
         transform: scale(1.05);
     }
 
-    /* Efek Hover pada Kartu Statistik */
     .card-stats {
-        background: #ecf0f1; /* Warna latar kartu abu-abu muda */
-        border: 1px solid #bdc3c7; /* Border tipis */
+        background: #ecf0f1; 
+        border: 1px solid #bdc3c7;
         transition: all 0.3s ease-in-out;
     }
 
     .card-stats:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        background: #ffffff; /* Latar belakang lebih terang saat hover */
+        background: #ffffff; 
     }
 
     .card-stats .icon-big i {
         font-size: 3rem;
-        color: #34495e; /* Warna ikon sesuai tema */
+        color: #34495e;
     }
 
     .card-stats .numbers p {
-        color: #7f8c8d; /* Warna kategori abu-abu gelap */
+        color: #7f8c8d;
         font-size: 0.9rem;
     }
 
     .card-stats .numbers h4 {
-        color: #34495e; /* Warna angka hitam gelap */
+        color: #34495e; 
         font-size: 1.5rem;
     }
 
-    /* Chart Header */
     .chart-header {
-        background: #ffffff; /* Latar belakang header cerah */
-        color: #34495e; /* Teks header gelap */
-        border-bottom: 2px solid #ecf0f1; /* Garis bawah tipis */
+        background: #ffffff; 
+        color: #34495e; 
+        border-bottom: 2px solid #ecf0f1; 
         padding: 15px;
         font-weight: bold;
-        border-radius: 10px 10px 0 0; /* Sudut atas melengkung */
+        border-radius: 10px 10px 0 0;
     }
 
-    /* Chart Container */
     .chart-container {
         position: relative;
-        height: 350px; /* Tinggi diperbesar */
+        height: 350px; 
         width: 100%;
         margin-top: 20px;
         opacity: 0;
         animation: fadeInUp 1s ease-in-out forwards;
-        background: #ffffff; /* Latar grafik putih */
+        background: #ffffff; 
         border-radius: 10px;
         padding: 20px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Bayangan lebih tajam */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
     }
 
-    /* Animasi Floating untuk Judul */
     @keyframes floatUpAndDown {
         0%, 100% {
             transform: translateY(0);
@@ -135,7 +129,6 @@
         }
     }
 
-    /* Animasi Fade dan Scale untuk Deskripsi */
     @keyframes fadeInScale {
         0%, 100% {
             opacity: 1;
@@ -147,7 +140,6 @@
         }
     }
 
-    /* Animasi Pulse untuk Tombol */
     @keyframes pulseButton {
         0%, 100% {
             transform: scale(1);
@@ -159,7 +151,6 @@
         }
     }
 
-    /* Animasi Transisi pada Grafik */
     @keyframes fadeInUp {
         0% {
             opacity: 0;
@@ -333,9 +324,9 @@
             labels: ['Students', 'Teachers', 'Mata Pelajaran'],
             datasets: [{
                 data: [{{ $students }}, {{ $teachers }}, {{ $subjects }}],
-                backgroundColor: ['#1abc9c', '#3498db', '#9b59b6'], // Warna pie chart sesuai tema
-                borderColor: '#ffffff', // Garis tepi putih
-                borderWidth: 2 // Ketebalan garis tepi
+                backgroundColor: ['#1abc9c', '#3498db', '#9b59b6'], 
+                borderColor: '#ffffff', 
+                borderWidth: 2
             }]
         },
         options: {
@@ -344,7 +335,7 @@
             plugins: {
                 legend: {
                     labels: {
-                        color: '#34495e', // Warna teks legenda
+                        color: '#34495e', 
                         font: {
                             size: 14,
                             weight: 'bold'
@@ -368,9 +359,9 @@
             datasets: [{
                 label: 'Jumlah Nilai',
                 data: [{{ $grades['A'] }}, {{ $grades['B'] }}, {{ $grades['C'] }}, {{ $grades['D'] }}, {{ $grades['E'] }}],
-                backgroundColor: ['#1abc9c', '#3498db', '#9b59b6', '#e74c3c', '#f1c40f'], // Warna bar chart sesuai tema
-                borderColor: '#ffffff', // Garis tepi putih
-                borderWidth: 2 // Ketebalan garis tepi
+                backgroundColor: ['#1abc9c', '#3498db', '#9b59b6', '#e74c3c', '#f1c40f'], 
+                borderColor: '#ffffff', 
+                borderWidth: 2 
             }]
         },
         options: {
@@ -379,10 +370,10 @@
             scales: {
                 x: {
                     grid: {
-                        color: '#ecf0f1' // Warna garis grid sumbu X
+                        color: '#ecf0f1' 
                     },
                     ticks: {
-                        color: '#34495e', // Warna teks sumbu X
+                        color: '#34495e',
                         font: {
                             size: 12,
                             weight: 'bold'
@@ -392,10 +383,10 @@
                 y: {
                     beginAtZero: true,
                     grid: {
-                        color: '#ecf0f1' // Warna garis grid sumbu Y
+                        color: '#ecf0f1' 
                     },
                     ticks: {
-                        color: '#34495e', // Warna teks sumbu Y
+                        color: '#34495e', 
                         font: {
                             size: 12,
                             weight: 'bold'
@@ -406,7 +397,7 @@
             plugins: {
                 legend: {
                     labels: {
-                        color: '#34495e', // Warna teks legenda
+                        color: '#34495e',
                         font: {
                             size: 14,
                             weight: 'bold'

@@ -66,8 +66,9 @@
                 </table>
             </div>
             <div class="text-center mt-3">
-                <button class="btn btn-success" onclick="updateStatus('Diterima')">Terima</button>
-                <button class="btn btn-danger" onclick="updateStatus('Ditolak')">Tolak</button>
+            <button class="btn btn-success" onclick="updateStatus('Diterima')">Terima</button>
+            <button class="btn btn-danger" onclick="updateStatus('Ditolak')">Tolak</button>
+                <button class="btn btn-primary mx-2" id="exportPdfButton" onclick="exportToPDF()" disabled>Export PDF</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="closeDetailModal">Close</button>
@@ -80,6 +81,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         /* General Styling */
         body {
@@ -87,18 +89,15 @@
             background-color: #f9f9f9;
             color: #333;
         }
-
         .container {
             margin-top: 20px;
         }
-
         h1 {
             font-size: 2rem;
             color: #2c3e50;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
         /* Table Styling */
         .table-responsive {
             max-height: 500px;
@@ -107,7 +106,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
         thead {
             position: sticky;
             top: 0;
@@ -116,108 +114,141 @@
             z-index: 10;
             border-bottom: 2px solid #ddd;
         }
-
         th, td {
             text-align: left;
             padding: 12px;
             font-size: 0.9rem;
         }
-
         tbody tr:hover {
             background-color: #f1f1f1;
         }
-
         .badge {
             font-size: 0.8rem;
             padding: 5px 10px;
             border-radius: 20px;
         }
-
         .badge.bg-success {
             background-color: #28a745;
             color: #fff;
         }
-
         .badge.bg-danger {
             background-color: #dc3545;
             color: #fff;
         }
-
-        /* Buttons Styling */
+       
         .btn {
             font-size: 0.8rem;
             padding: 5px 10px;
             border-radius: 5px;
             transition: all 0.3s ease;
         }
-
         .btn-info {
             background-color: #17a2b8;
             border-color: #17a2b8;
         }
-
         .btn-info:hover {
             background-color: #138496;
             border-color: #138496;
         }
-
         .btn-warning {
             background-color: #ffc107;
             border-color: #ffc107;
         }
-
         .btn-warning:hover {
             background-color: #e0a800;
             border-color: #e0a800;
         }
-
         .btn-danger {
             background-color: #dc3545;
             border-color: #dc3545;
         }
-
         .btn-danger:hover {
             background-color: #c82333;
             border-color: #bd2130;
         }
-
         .btn-success {
             background-color: #28a745;
             border-color: #28a745;
         }
-
         .btn-success:hover {
             background-color: #218838;
             border-color: #1e7e34;
         }
 
-        /* Modal Styling */
+        .button-container {
+            display: flex;
+            justify-content: center; 
+            gap: 15px; 
+        }
+
+        .btn {
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 8px; 
+            border: none; 
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05); 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+        }
+
+        .custom-btn-success {
+            background-color: #28a745;
+            color: white; 
+        }
+
+        .custom-btn-success:hover {
+            background-color: #218838; 
+        }
+
+        .custom-btn-danger {
+            background-color: #dc3545;
+            color: white; 
+        }
+
+        .custom-btn-danger:hover {
+            background-color: #bd2130; 
+        }
+
+        .custom-btn-primary {
+            background-color: #007bff;
+            color: white; 
+        }
+
+        .custom-btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .custom-btn-primary:disabled {
+            background-color: #ced4da; 
+            color: #6c757d; 
+            cursor: not-allowed;
+        }
+    
         .modal-content {
             border-radius: 10px;
             border: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
         .modal-header {
             background-color: #2c3e50;
             color: #fff;
             border-radius: 10px 10px 0 0;
         }
-
         .modal-title {
             font-size: 1.2rem;
             font-weight: bold;
         }
-
         .modal-body {
             background-color: #f9f9f9;
         }
-
         .modal-footer {
             background-color: #f9f9f9;
             border-top: 1px solid #ddd;
         }
-
         /* Sticky Header Styling */
         .sticky-top {
             background-color: #fff;
@@ -302,6 +333,15 @@
                             ? '<span class="badge bg-success">Diterima</span>' 
                             : '<span class="badge bg-danger">Tidak Diterima</span>'
                         );
+
+                        // Aktifkan atau nonaktifkan tombol Export PDF berdasarkan status
+                        const exportPdfButton = document.getElementById("exportPdfButton");
+                        if (data.status === "Diterima") {
+                            exportPdfButton.removeAttribute("disabled");
+                        } else {
+                            exportPdfButton.setAttribute("disabled", "true");
+                        }
+
                         $("#detailModal").modal("show");
                     }
                 });
@@ -314,7 +354,7 @@
         });
 
         function updateStatus(status) {
-            var id = document.getElementById("detailId").textContent; // Ambil ID dari tabel
+            var id = document.getElementById("detailId").textContent;
             $.ajax({
                 url: `/pendaftaran/${id}/update-status`,
                 method: "POST",
@@ -346,6 +386,40 @@
                     event.target.submit();
                 }
             });
+        }
+
+        function exportToPDF() {
+            const id = document.getElementById("detailId").textContent;
+            const nama = document.getElementById("detailNama").textContent;
+            const nisn = document.getElementById("detailNISN").textContent;
+            const tempatLahir = document.getElementById("detailTempatLahir").textContent;
+            const tanggalLahir = document.getElementById("detailTanggalLahir").textContent;
+            const jenisKelamin = document.getElementById("detailJenisKelamin").textContent;
+            const asalSekolah = document.getElementById("detailAsalSekolah").textContent;
+            const nomorHP = document.getElementById("detailNomorHP").textContent;
+            const namaAyah = document.getElementById("detailNamaAyah").textContent;
+            const namaIbu = document.getElementById("detailNamaIbu").textContent;
+            const email = document.getElementById("detailEmail").textContent;
+            const status = document.getElementById("detailStatus").textContent;
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.text(`Detail Pendaftaran`, 10, 10);
+            doc.text(`ID: ${id}`, 10, 20);
+            doc.text(`Nama: ${nama}`, 10, 30);
+            doc.text(`NISN: ${nisn}`, 10, 40);
+            doc.text(`Tempat Lahir: ${tempatLahir}`, 10, 50);
+            doc.text(`Tanggal Lahir: ${tanggalLahir}`, 10, 60);
+            doc.text(`Jenis Kelamin: ${jenisKelamin}`, 10, 70);
+            doc.text(`Asal Sekolah: ${asalSekolah}`, 10, 80);
+            doc.text(`Nomor HP: ${nomorHP}`, 10, 90);
+            doc.text(`Nama Ayah: ${namaAyah}`, 10, 100);
+            doc.text(`Nama Ibu: ${namaIbu}`, 10, 110);
+            doc.text(`Email: ${email}`, 10, 120);
+            doc.text(`Status: ${status}`, 10, 130);
+
+            doc.save(`Detail_Pendaftaran_${id}.pdf`);
         }
     </script>
 @endsection

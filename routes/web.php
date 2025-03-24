@@ -10,6 +10,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\PendaftaranSearchController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,6 +18,10 @@ Route::get('/', function () {
 
 Route::get('/pendaftaran/create', [PendaftaranController::class, 'create'])->name('pendaftaran.create'); // Form Pendaftaran
 Route::post('/pendaftaran/store', [PendaftaranController::class, 'store'])->name('pendaftaran.store'); // Simpan Pendaftaran
+
+Route::get('/search/pendaftaran', [PendaftaranSearchController::class, 'search'])
+    ->name('search.pendaftaran')
+    ->withoutMiddleware('auth'); // Menonaktifkan middleware auth untuk route ini
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -80,9 +85,9 @@ Route::middleware('auth', 'verified')->group(function () {
         Route::put('/pendaftaran/{id}', [PendaftaranController::class, 'update'])->name('pendaftaran.update'); // Hapus duplikasi
         Route::delete('/pendaftaran/{id}', [PendaftaranController::class, 'destroy'])->name('pendaftaran.destroy');
         Route::get('/pendaftaran/export/pdf', [PendaftaranController::class, 'exportPDF'])->name('pendaftaran.export.pdf');
-        Route::get('/pendaftaran/{id}', [PendaftaranController::class, 'show']);
+        Route::get('/pendaftaran/{id}', [PendaftaranController::class, 'show'])->name('pendaftaran.show');
         Route::post('/pendaftaran/{id}/update-status', [PendaftaranController::class, 'updateStatus'])->name('pendaftaran.updateStatus');
-
+        Route::get('/pendaftaran/export-pdf/{id}', [PendaftaranController::class, 'exportPdf'])->name('pendaftaran.export-pdf');
 
     // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
